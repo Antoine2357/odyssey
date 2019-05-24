@@ -40,7 +40,7 @@ class Form extends React.Component {
   };
 
   handleSubmit = e => {
-    if (e.target.value !== this.state.password) {
+    if (this.state.confirmPassword !== this.state.password) {
       alert("error incorrect password");
       this.setState({ confirmPassword: e.target.value });
       e.preventDefault();
