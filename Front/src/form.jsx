@@ -5,21 +5,78 @@ class Form extends React.Component {
     super(props);
 
     this.state = {
-      mail: ""
+      mail: "mon@email.com",
+      password: "monPassw0rd",
+      confirmPassword: " ",
+      name: "James",
+      lastname: "Bond"
     };
-    this.listener = this.listener.bind(this);
   }
-  listener(e) {
+  onSubmit = e => {
     this.setState({
       mail: e.target.value
     });
-  }
+  };
+  onChangePassword = e => {
+    this.setState({
+      password: e.target.value
+    });
+  };
+
+  handleConfirmPassword = event => {
+    this.setState({ confirmPassword: event.target.value });
+  };
+
+  onChangeName = e => {
+    this.setState({
+      name: e.target.value
+    });
+  };
+
+  onChangeLastname = e => {
+    this.setState({
+      lastname: e.target.value
+    });
+  };
+
+  handleSubmit = e => {
+    if (e.target.value !== this.state.password) {
+      alert("error incorrect password");
+      this.setState({ confirmPassword: e.target.value });
+      e.preventDefault();
+      console.log(this.state);
+    }
+  };
   render() {
+    const titre = JSON.stringify(this.state, 1, 1);
     return (
-      <div>
-        <h1 value="toto">{this.state.mail}</h1>
-        <input onChange={this.listener} type="email" name="email" />
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <h1>{titre}</h1>
+        <br />
+        <p>e-mail</p>
+        <input onSubmit={this.onChange} type="email" name="email" />
+        <br />
+        <p>password</p>
+        <input
+          onChange={this.onChangePassword}
+          type="password"
+          name="password"
+        />
+        <p>confirm password</p>
+        <input
+          onChange={this.handleConfirmPassword}
+          type="cpassword"
+          name="cpassword"
+        />
+        <br />
+        <p>name</p>
+        <input onChange={this.onChangeName} type="text" name="name" />
+        <br />
+        <p>lastname</p>
+        <input onChange={this.onChangeLastname} type="text" name="lastname" />
+        <br />
+        <input type="submit" value="Soumettre" />
+      </form>
     );
   }
 }
