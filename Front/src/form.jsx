@@ -65,7 +65,7 @@ class Form extends React.Component {
         <p>confirm password</p>
         <input
           onChange={this.handleConfirmPassword}
-          type="cpassword"
+          type="password"
           name="cpassword"
         />
         <br />
